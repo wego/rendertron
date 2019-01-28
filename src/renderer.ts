@@ -135,7 +135,7 @@ export class Renderer {
       injectBaseHref, `${parsedUrl.protocol}//${parsedUrl.host}`);
 
     // Serialize page.
-    const result = await page.evaluate('document.firstElementChild.outerHTML');
+    const result = await page.evaluate('(document.firstElementChild || document.activeElement.parentElement).outerHTML');
 
     await page.close();
     return { status: statusCode, content: result };
